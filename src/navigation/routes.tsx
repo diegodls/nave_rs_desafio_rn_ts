@@ -13,7 +13,7 @@ import Detail from '../pages/Detail';
 
 //COMPONENTS
 function Logo() {
-  return <Image source={require('../assets/imgs/logo/logo.png')} />;
+  return <Image source={require('../assets/img/logo/logo.png')} />;
 }
 
 const Drawer = createDrawerNavigator();
@@ -63,7 +63,6 @@ const DrawerNavigator = () => {
 };
 
 export default DrawerNavigator;
-
 
 /**
  * !Separar as stacks
