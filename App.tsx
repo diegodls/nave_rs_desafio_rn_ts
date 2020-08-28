@@ -1,11 +1,12 @@
 import React from 'react';
-import DrawerNavigator from './src/navigation/routes';
+import Routes from './src/routes/index';
+import { AuthProvider } from './src/contexts/auth';
 
 const App = () => {
   return (
-    <>
-      <DrawerNavigator />
-    </>
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
   );
 };
 

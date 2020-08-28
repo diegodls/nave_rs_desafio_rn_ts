@@ -1,17 +1,21 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
-//INTERFACES
-interface Params {
-  token: string;
-}
+import { useAuthContext } from '../../contexts/auth';
 
-const Home = () => {
+const Home: React.FC = () => {
   //CONST
   const navigation = useNavigation();
-  const route = useRoute();
-  const routeParams = route.params as Params;
+
+  const { user, token, logOut } = useAuthContext();
+
+  //FUNCTIONS
+  function handlelogOut() {
+    logOut();
+  }
+
+  console.log(user);
 
   return (
     <>
@@ -22,14 +26,17 @@ const Home = () => {
           }}>
           <Text>Home</Text>
         </TouchableWithoutFeedback>
+        <Text>{user?.name}</Text>
         <TouchableWithoutFeedback
           onPress={() => {
             navigation.goBack();
           }}>
           <Text>Back</Text>
         </TouchableWithoutFeedback>
-
-        <Text>Token: {routeParams.token}</Text>
+        <Text>Token: {token}</Text>
+        <TouchableWithoutFeedback onPress={handlelogOut}>
+          <Text>LogOut</Text>
+        </TouchableWithoutFeedback>
       </View>
     </>
   );

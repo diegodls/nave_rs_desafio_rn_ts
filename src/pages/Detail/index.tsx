@@ -2,9 +2,14 @@ import React from 'react';
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const Detail = () => {
+//CONTEXT
+import { useAuthContext } from '../../contexts/auth';
+
+const Detail: React.FC = () => {
   //CONST
   const navigation = useNavigation();
+
+  const { token } = useAuthContext();
 
   return (
     <>
@@ -21,6 +26,7 @@ const Detail = () => {
           }}>
           <Text>Back</Text>
         </TouchableWithoutFeedback>
+        <Text>Token: {token}</Text>
       </View>
     </>
   );

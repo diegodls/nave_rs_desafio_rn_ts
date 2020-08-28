@@ -1,20 +1,25 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const Login = () => {
+import { useAuthContext } from '../../contexts/auth';
+
+const Login: React.FC = () => {
   //CONST
   const navigation = useNavigation();
+
+  const { signed, logIn } = useAuthContext();
+  console.log(signed);
+
+  //FUNCTIONS
+  function handleLogin() {
+    logIn();
+  }
+
   return (
     <>
       <View style={styles.container}>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            navigation.reset({
-              index: 0,
-              routes: [{ name: 'Navers', params: { token: 'EsseÉoToken' } }],
-            });
-          }}>
+        <TouchableWithoutFeedback onPress={handleLogin}>
           <Text>Login</Text>
         </TouchableWithoutFeedback>
       </View>
