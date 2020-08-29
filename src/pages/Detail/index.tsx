@@ -16,7 +16,7 @@ const Detail: React.FC = () => {
       <View style={styles.container}>
         <TouchableWithoutFeedback
           onPress={() => {
-            navigation.navigate('Detail');
+            navigation.navigate('AddOrEdit');
           }}>
           <Text>Detail</Text>
         </TouchableWithoutFeedback>

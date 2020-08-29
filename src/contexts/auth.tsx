@@ -29,13 +29,13 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     async function loadStorageData() {
-      const storagedUser = await AsyncStorage.getItem('@Navers:user');
-      const storagedToken = await AsyncStorage.getItem('@Navers:token');
+      const storedUser = await AsyncStorage.getItem('@Navers:user');
+      const storedToken = await AsyncStorage.getItem('@Navers:token');
 
-      if (storagedUser && storagedToken) {
-        api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
-        setUser(JSON.parse(storagedUser));
-        setToken(storagedToken);
+      if (storedUser && storedToken) {
+        api.defaults.headers.Authorization = `Bearer ${storedToken}`;
+        setUser(JSON.parse(storedUser));
+        setToken(storedToken);
       }
       setTimeout(() => {
         setLoading(false);
