@@ -39,5 +39,5 @@ export const ButtonTextText = styled.Text`
   font-weight: 600;
   font-size: 22px;
   line-height: 32px;
-  color: ${colors.text};
+  color: ${colors.secondary};
 `;
