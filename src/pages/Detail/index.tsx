@@ -1,44 +1,46 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {
+  Container,
+  TitleContainer,
+  Title,
+  AddButton,
+  AddButtonContainer,
+  AddButtonText,
+} from './styles';
+import { useRoute } from '@react-navigation/native';
+
+//INTERFACE
+import { NaverProps } from '../../config/Interfaces';
+interface Params {
+  item: NaverProps;
+}
 
 //CONTEXT
 import { useAuthContext } from '../../contexts/auth';
 
 const Detail: React.FC = () => {
+  //HOOKS
+  const route = useRoute();
+
   //CONST
-  const navigation = useNavigation();
+  //const routeParams = route.params as Params;
+  //const item = routeParams.item;
+  const { item } = route.params as Params;
 
   const { token } = useAuthContext();
 
   return (
-    <>
-      <View style={styles.container}>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            navigation.navigate('AddOrEdit');
-          }}>
-          <Text>Detail</Text>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <Text>Back</Text>
-        </TouchableWithoutFeedback>
-        <Text>Token: {token}</Text>
-      </View>
-    </>
+    <Container>
+      <TitleContainer>
+        <Title>Navers</Title>
+        <AddButton>
+          <AddButtonContainer>
+            <AddButtonText>{item.name}</AddButtonText>
+          </AddButtonContainer>
+        </AddButton>
+      </TitleContainer>
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#CF0',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default Detail;

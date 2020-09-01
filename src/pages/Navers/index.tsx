@@ -1,54 +1,55 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
+import {
+  Container,
+  InnerContainer,
+  TitleTextContainer,
+  TitleContainer,
+  TitleText,
+  AddButton,
+  AddButtonContainer,
+  AddButtonText,
+  List,
+} from './styles';
 import { useNavigation } from '@react-navigation/native';
 
+//CONTEXT
 import { useAuthContext } from '../../contexts/auth';
 
-const Home: React.FC = () => {
+//MOCKED
+import data from './data';
+
+//COMPONENTS
+import NaversCard from '../../components/NaversCard';
+
+const Navers: React.FC = () => {
   //CONST
   const navigation = useNavigation();
-
-  const { user, token, logOut } = useAuthContext();
-
-  //FUNCTIONS
-  function handlelogOut() {
-    logOut();
-  }
-
-  console.log(user);
+  const { token } = useAuthContext();
 
   return (
-    <>
-      <View style={styles.container}>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            navigation.navigate('Detail');
-          }}>
-          <Text>Home</Text>
-        </TouchableWithoutFeedback>
-        <Text>{user?.name}</Text>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <Text>Back</Text>
-        </TouchableWithoutFeedback>
-        <Text>Token: {token}</Text>
-        <TouchableWithoutFeedback onPress={handlelogOut}>
-          <Text>LogOut</Text>
-        </TouchableWithoutFeedback>
-      </View>
-    </>
+    <Container>
+      <InnerContainer>
+        <TitleContainer>
+          <TitleTextContainer title>
+            <TitleText>Navers</TitleText>
+          </TitleTextContainer>
+          <AddButton>
+            <AddButtonContainer>
+              <AddButtonText>Adicionar naver</AddButtonText>
+            </AddButtonContainer>
+          </AddButton>
+        </TitleContainer>
+        <List
+          data={data}
+          numColumns={2}
+          columnWrapperStyle={{ justifyContent: 'space-between' }}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => String(item.name)}
+          renderItem={({ item }) => <NaversCard {...item} />}
+        />
+      </InnerContainer>
+    </Container>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FC0',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-export default Home;
+export default Navers;
