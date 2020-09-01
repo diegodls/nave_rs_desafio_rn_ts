@@ -13,7 +13,7 @@ import {
 } from './styles';
 
 //INTERFACE
-import { NaverProps } from '../../config/Interfaces';
+import { NaverProps } from '../../Models/NaverProps';
 
 const NaversCard: React.FC<NaverProps> = (item) => {
   //HOOKS
@@ -40,7 +40,7 @@ const NaversCard: React.FC<NaverProps> = (item) => {
             handleDetail();
           }}>
           <ContentContainer>
-            <Image source={item.url} />
+            <Image source={require('../../assets/img/naver.png')} />
             <Text name>{item.name}</Text>
             <Text job_role>{item.job_role}</Text>
           </ContentContainer>
@@ -62,3 +62,7 @@ const NaversCard: React.FC<NaverProps> = (item) => {
 };
 
 export default NaversCard;
+
+/**
+ * !Verificar a uri da imagem
+ */

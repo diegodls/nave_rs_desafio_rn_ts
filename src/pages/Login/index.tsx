@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   TextContainer,
@@ -8,23 +8,60 @@ import {
   TextInput,
   ButtonContainer,
   Button,
+  Modal,
+  ModalContainer,
+  ModalBackground,
+  ModalTopContainer,
+  ModalTitle,
+  ModalCloseIcon,
+  ModalMessage,
 } from './styles';
 import Logo from '../../components/Logo';
 import { useAuthContext } from '../../contexts/auth';
 
 const Login: React.FC = () => {
-  const { signed, logIn } = useAuthContext();
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  console.log(signed);
+  const { logIn, loginError } = useAuthContext();
+  const [email, setEmail] = useState<string>('user001@nave.rs');
+  const [password, setPassword] = useState<string>('user001');
+  const [visible, setVisible] = useState<boolean>(false);
 
   //FUNCTIONS
   function handleLogin() {
-    logIn();
+    logIn(email, password);
   }
+
+  function closeModal() {
+    setVisible(false);
+  }
+
+  useEffect(() => {
+    if (loginError) {
+      setVisible(true);
+    }
+    console.log(loginError);
+  }, [loginError]);
 
   return (
     <Container>
+      <Modal visible={visible} animationType={'fade'} transparent={true}>
+        <ModalBackground>
+          <ModalContainer>
+            <ModalTopContainer>
+              <ModalTitle>Erro ao logar</ModalTitle>
+              <Button onPress={closeModal}>
+                <ModalCloseIcon
+                  source={require('../../assets/img/icons/close.png')}
+                />
+              </Button>
+            </ModalTopContainer>
+            <ModalMessage>
+              {loginError !== undefined
+                ? loginError.message
+                : 'Tente novamente mais tarde!'}
+            </ModalMessage>
+          </ModalContainer>
+        </ModalBackground>
+      </Modal>
       <LogoContainer>
         <Logo />
       </LogoContainer>

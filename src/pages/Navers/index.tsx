@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   InnerContainer,
@@ -12,42 +12,90 @@ import {
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
 
-//CONTEXT
-import { useAuthContext } from '../../contexts/auth';
+//API
+import api from '../../services/api';
 
-//MOCKED
-import data from './data';
+//INTERFACES
+import { NaverProps } from '../../Models/NaverProps';
 
 //COMPONENTS
 import NaversCard from '../../components/NaversCard';
 
 const Navers: React.FC = () => {
-  //CONST
+  //HOOKS
   const navigation = useNavigation();
-  const { token } = useAuthContext();
+
+  //STATES
+  const [naversData, setNaversData] = useState<NaverProps[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [loadDataError, setLoadDataError] = useState<boolean>(false);
+
+  useEffect(() => {
+    setLoading(true);
+    async function loadData() {
+      await api
+        .get<NaverProps[]>('/navers')
+        .then((response) => {
+          if (response.status !== 200) {
+            console.log(response.data);
+            throw new Error(String(response.status));
+          } else {
+            setNaversData(response.data);
+            setLoading(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoadDataError(true);
+          setLoading(false);
+        });
+    }
+    loadData();
+  }, []);
+
+  function handleNavigation() {
+    navigation.navigate('AddOrEdit');
+  }
 
   return (
     <Container>
-      <InnerContainer>
-        <TitleContainer>
-          <TitleTextContainer title>
-            <TitleText>Navers</TitleText>
-          </TitleTextContainer>
-          <AddButton>
-            <AddButtonContainer>
-              <AddButtonText>Adicionar naver</AddButtonText>
-            </AddButtonContainer>
-          </AddButton>
-        </TitleContainer>
-        <List
-          data={data}
-          numColumns={2}
-          columnWrapperStyle={{ justifyContent: 'space-between' }}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => String(item.name)}
-          renderItem={({ item }) => <NaversCard {...item} />}
-        />
-      </InnerContainer>
+      {!loading ? (
+        <>
+          {loadDataError ? (
+            <TitleText>Erro</TitleText>
+          ) : (
+            <InnerContainer>
+              <TitleContainer>
+                <TitleTextContainer title>
+                  <TitleText>Navers</TitleText>
+                  <TitleText>
+                    {naversData !== null ? naversData.length : '0'}
+                  </TitleText>
+                </TitleTextContainer>
+                <AddButton>
+                  <AddButtonContainer>
+                    <AddButtonText onPress={handleNavigation}>
+                      Adicionar naver
+                    </AddButtonText>
+                  </AddButtonContainer>
+                </AddButton>
+              </TitleContainer>
+              <List
+                data={naversData}
+                numColumns={2}
+                columnWrapperStyle={{ justifyContent: 'space-between' }}
+                showsVerticalScrollIndicator={false}
+                keyExtractor={(item) => String(item.id)}
+                renderItem={({ item }: { item: NaverProps }) => (
+                  <NaversCard {...item} />
+                )}
+              />
+            </InnerContainer>
+          )}
+        </>
+      ) : (
+        <TitleText>Carregando</TitleText>
+      )}
     </Container>
   );
 };

@@ -10,7 +10,7 @@ import {
 import { useRoute } from '@react-navigation/native';
 
 //INTERFACE
-import { NaverProps } from '../../config/Interfaces';
+import { NaverProps } from '../../Models/NaverProps';
 interface Params {
   item: NaverProps;
 }
@@ -33,6 +33,7 @@ const Detail: React.FC = () => {
     <Container>
       <TitleContainer>
         <Title>Navers</Title>
+        <Title>{token}</Title>
         <AddButton>
           <AddButtonContainer>
             <AddButtonText>{item.name}</AddButtonText>

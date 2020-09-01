@@ -6,6 +6,7 @@ export default {
   white: '#FFFFFF',
   black: '#000000',
   placeholder: '#9E9E9E',
+  dark_opacity: 'rgba(0,0,0,0.5)',
   test: '#DF00CC',
   test2: '#CDFF00',
   test3: '#0000FF',

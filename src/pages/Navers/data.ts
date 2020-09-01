@@ -1,5 +1,6 @@
 const data = [
   {
+    id: '1',
     job_role: 'Desenvolvedor',
     admission_date: '19/08/2018',
     birthdate: '12/04/1992',
@@ -8,6 +9,7 @@ const data = [
     url: require('../../assets/img/naver.png'),
   },
   {
+    id: '2',
     job_role: 'Desenvolvedor',
     admission_date: '19/08/2018',
     birthdate: '12/04/1992',
@@ -16,6 +18,7 @@ const data = [
     url: require('../../assets/img/naver.png'),
   },
   {
+    id: '3',
     job_role: 'Front-end Developer',
     admission_date: '19/08/2018',
     birthdate: '12/04/1992',
@@ -24,6 +27,7 @@ const data = [
     url: require('../../assets/img/naver.png'),
   },
   {
+    id: '4',
     job_role: 'Desenvolvedor',
     admission_date: '19/08/2018',
     birthdate: '12/04/1992',
@@ -32,6 +36,7 @@ const data = [
     url: require('../../assets/img/naver.png'),
   },
   {
+    id: '5',
     job_role: 'Front-end Developer',
     admission_date: '19/08/2018',
     birthdate: '12/04/1992',
@@ -40,6 +45,7 @@ const data = [
     url: require('../../assets/img/naver.png'),
   },
   {
+    id: '6',
     job_role: 'Designer',
     admission_date: '19/08/2018',
     birthdate: '12/04/1992',
@@ -48,6 +54,7 @@ const data = [
     url: require('../../assets/img/naver.png'),
   },
   {
+    id: '7',
     job_role: 'Desenvolvedor',
     admission_date: '19/08/2018',
     birthdate: '12/04/1992',
@@ -56,6 +63,7 @@ const data = [
     url: require('../../assets/img/naver.png'),
   },
   {
+    id: '8',
     job_role: 'Front-end Developer',
     admission_date: '19/08/2018',
     birthdate: '12/04/1992',
@@ -64,6 +72,7 @@ const data = [
     url: require('../../assets/img/naver.png'),
   },
   {
+    id: 9,
     job_role: 'Back-end Developer',
     admission_date: '19/08/2018',
     birthdate: '12/04/1992',

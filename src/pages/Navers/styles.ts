@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 import colors from '../../styles/colors';
-import { NaverProps } from '../../config/Interfaces';
+import { NaverProps } from '../../Models/NaverProps';
 
 interface Props {
   title?: boolean;
@@ -12,6 +12,7 @@ export const Container = styled.View`
   flex: 1;
   background-color: ${colors.primary};
   align-items: center;
+  justify-content: center;
 `;
 
 export const InnerContainer = styled.View`

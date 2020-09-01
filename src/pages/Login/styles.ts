@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { Platform } from 'react-native';
 import colors from '../../styles/colors';
 
 interface Props {
@@ -73,3 +74,36 @@ export const ButtonContainer = styled.View`
   height: 40px;
 `;
 export const Button = styled.TouchableWithoutFeedback``;
+
+export const Modal = styled.Modal``;
+
+export const ModalBackground = styled.SafeAreaView`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.dark_opacity};
+`;
+
+export const ModalContainer = styled.View`
+  width: 95%;
+  background-color: ${colors.white};
+  padding: 21px;
+`;
+
+export const ModalTopContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+`;
+
+export const ModalTitle = styled.Text`
+  color: ${colors.secondary};
+  font-size: 22px;
+  line-height: 32px;
+  font-family: Montserrat-Regular;
+`;
+
+export const ModalCloseIcon = styled.Image``;
+
+export const ModalMessage = styled.Text``;

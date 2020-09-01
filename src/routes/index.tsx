@@ -5,7 +5,6 @@ import { useAuthContext } from '../contexts/auth';
 
 import Splash from '../pages/Splash';
 import AuthRoutes from './auth.routes';
-import AppRoutes from './app.routes';
 import DrawerRoutes from './app.drawer';
 
 const Routes: React.FC = () => {

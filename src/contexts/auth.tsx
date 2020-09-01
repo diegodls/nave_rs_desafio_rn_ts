@@ -1,29 +1,20 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import * as auth from '../services/auth';
+//API
 import api from '../services/api';
 
-interface User {
-  name: string;
-  email: string;
-}
-
-interface AuthContextData {
-  token: string | null;
-  signed: boolean;
-  user: User | null;
-  loading: boolean;
-  logIn(): Promise<void>;
-  logOut(): void;
-}
+//INTERFACES
+import { ResponseLoginUser, LoggedError } from '../Models/ResponseLoginUser';
+import { AuthContextData } from '../Models/AuthContextData';
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  //CONST
-  const [user, setUser] = useState<User | null>(null);
+  //STATES
+  const [user, setUser] = useState<ResponseLoginUser | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [loginError, setLoginError] = useState<LoggedError | undefined>();
 
   //USE_EFFECT
 
@@ -44,15 +35,30 @@ export const AuthProvider: React.FC = ({ children }) => {
     loadStorageData();
   }, []);
 
-  async function logIn() {
-    const response = await auth.logIn();
-    setUser(response.user);
-    setToken(response.token);
+  //FUNCTIONS
+  async function logIn(email: string, password: string) {
+    try {
+      const response = await api.post<ResponseLoginUser>('/users/login', {
+        email,
+        password,
+      });
 
-    api.defaults.headers.Authorization = `Bearer ${response.token}`;
+      setUser(response.data);
+      setToken(response.data.token);
+      setLoginError(undefined);
 
-    await AsyncStorage.setItem('@Navers:user', JSON.stringify(response.user));
-    await AsyncStorage.setItem('@Navers:token', response.token);
+      api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+
+      await AsyncStorage.setItem('@Navers:user', JSON.stringify(response.data));
+      await AsyncStorage.setItem('@Navers:token', response.data.token);
+
+      return response.data;
+    } catch (err) {
+      if (err.response) {
+        setLoginError(err.response.data);
+        return err.response.data;
+      }
+    }
   }
 
   function logOut() {
@@ -60,9 +66,18 @@ export const AuthProvider: React.FC = ({ children }) => {
       setUser(null);
     });
   }
+
   return (
     <AuthContext.Provider
-      value={{ signed: !!user, user, token, loading, logIn, logOut }}>
+      value={{
+        signed: !!user,
+        loginError,
+        user,
+        token,
+        loading,
+        logIn,
+        logOut,
+      }}>
       {children}
     </AuthContext.Provider>
   );
