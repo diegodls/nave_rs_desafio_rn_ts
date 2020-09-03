@@ -21,6 +21,8 @@ import { NaverProps } from '../../Models/NaverProps';
 //COMPONENTS
 import NaversCard from '../../components/NaversCard';
 
+import { useAuthContext } from '../../contexts/auth';
+
 const Navers: React.FC = () => {
   //HOOKS
   const navigation = useNavigation();
@@ -29,6 +31,11 @@ const Navers: React.FC = () => {
   const [naversData, setNaversData] = useState<NaverProps[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [loadDataError, setLoadDataError] = useState<boolean>(false);
+
+  const { loginError, token } = useAuthContext();
+
+  console.log(`loginError: ${loginError}`);
+  console.log(`token: ${token}`);
 
   useEffect(() => {
     setLoading(true);
@@ -44,7 +51,7 @@ const Navers: React.FC = () => {
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.log(`err: ${err}`);
           setLoadDataError(true);
           setLoading(false);
         });

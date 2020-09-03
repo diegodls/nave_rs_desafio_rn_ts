@@ -51,16 +51,16 @@ const Detail: React.FC = () => {
         .get<NaverProps>(`/navers/${id}`)
         .then((response) => {
           if (response.status !== 200) {
-            console.log(response);
+            console.log(`erro ao carregar: ${response}`);
             throw new Error(String(response.status));
           } else {
             setNaverData(response.data);
-            console.log(response.data);
+            console.log(`carregou: ${response.data}`);
             setLoading(false);
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.log(`Erro ao carregar (catch): ${err}`);
           setLoadDataError(true);
           setLoading(false);
         });
@@ -74,13 +74,13 @@ const Detail: React.FC = () => {
   }
   async function handleDelete() {
     await api.delete(`/navers/${id}`).then((response) => {
-      console.log(response.status);
+      console.log(`status delete: ${response.status}`);
       navigation.goBack();
     });
   }
 
   function handleEdit() {
-    console.log(id);
+    console.log(`id edit: ${id}`);
   }
   return (
     <Container>

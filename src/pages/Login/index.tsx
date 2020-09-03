@@ -38,7 +38,6 @@ const Login: React.FC = () => {
     if (loginError) {
       setVisible(true);
     }
-    console.log(loginError);
   }, [loginError]);
 
   return (

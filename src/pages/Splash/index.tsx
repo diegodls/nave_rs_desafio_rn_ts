@@ -1,21 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { Container, Image } from './styles';
 
 const Splash: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <ActivityIndicator size={'large'} color={'#666'} />
-    </View>
+    <Container>
+      <Image source={require('../../assets/img/icon-nobg.png')} />
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0FC',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default Splash;

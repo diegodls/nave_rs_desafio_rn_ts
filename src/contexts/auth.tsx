@@ -14,6 +14,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<ResponseLoginUser | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [signed, setSigned] = useState<boolean>(false);
   const [loginError, setLoginError] = useState<LoggedError | undefined>();
 
   //USE_EFFECT
@@ -27,10 +28,11 @@ export const AuthProvider: React.FC = ({ children }) => {
         api.defaults.headers.Authorization = `Bearer ${storedToken}`;
         setUser(JSON.parse(storedUser));
         setToken(storedToken);
+        setSigned(true);
       }
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 2000);
     }
     loadStorageData();
   }, []);
@@ -52,6 +54,8 @@ export const AuthProvider: React.FC = ({ children }) => {
       await AsyncStorage.setItem('@Navers:user', JSON.stringify(response.data));
       await AsyncStorage.setItem('@Navers:token', response.data.token);
 
+      setSigned(true);
+
       return response.data;
     } catch (err) {
       if (err.response) {
@@ -64,13 +68,15 @@ export const AuthProvider: React.FC = ({ children }) => {
   function logOut() {
     AsyncStorage.clear().then(() => {
       setUser(null);
+      setToken(null);
+      setSigned(false);
     });
   }
 
   return (
     <AuthContext.Provider
       value={{
-        signed: !!user,
+        signed,
         loginError,
         user,
         token,
