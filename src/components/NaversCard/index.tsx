@@ -21,15 +21,11 @@ const NaversCard: React.FC<NaverProps> = (item) => {
 
   //FUNCTIONS
   function handleDetail(id: string) {
-    console.log('Clicou em: handleDetail');
     navigation.navigate('Detail', { id });
   }
-  function handleDelete() {
-    console.log('Clicou em: handleDelete');
-  }
+  function handleDelete() {}
   function handleEdit(id: string) {
-    console.log('Clicou em: handleDetail');
-    navigation.navigate('Detail', { id });
+    navigation.navigate('Edit', { id });
   }
 
   return (

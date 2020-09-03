@@ -75,7 +75,7 @@ export const TextField = styled.View`
 `;
 
 export const TextInput = styled.TextInput.attrs({
-  placeholderTextColor: colors.primary ,
+  placeholderTextColor: colors.secondary,
 })`
   width: 100%;
   height: 40px;
