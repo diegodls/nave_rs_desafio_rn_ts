@@ -98,3 +98,11 @@ const Login: React.FC = () => {
 };
 
 export default Login;
+/**
+ * !TODO:
+ * ! Adicionar um componente 'carregando' padrão
+ * ! refatorar para diminuir os styled
+ * ! Tratar os dados de maneira correta
+ * ! Transformar o Modal em um componente
+ * ! usar forms
+ */

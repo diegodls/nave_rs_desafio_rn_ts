@@ -20,16 +20,16 @@ const NaversCard: React.FC<NaverProps> = (item) => {
   const navigation = useNavigation();
 
   //FUNCTIONS
-  function handleDetail() {
+  function handleDetail(id: string) {
     console.log('Clicou em: handleDetail');
-    navigation.navigate('Detail', { item: item });
+    navigation.navigate('Detail', { id });
   }
   function handleDelete() {
     console.log('Clicou em: handleDelete');
   }
-  function handleEdit(name: string) {
+  function handleEdit(id: string) {
     console.log('Clicou em: handleDetail');
-    navigation.navigate('Detail', { id: name });
+    navigation.navigate('Detail', { id });
   }
 
   return (
@@ -37,7 +37,7 @@ const NaversCard: React.FC<NaverProps> = (item) => {
       <Wrapper>
         <Click
           onPress={() => {
-            handleDetail();
+            handleDetail(item.id);
           }}>
           <ContentContainer>
             <Image source={require('../../assets/img/naver.png')} />
@@ -51,7 +51,7 @@ const NaversCard: React.FC<NaverProps> = (item) => {
           </Click>
           <Click
             onPress={() => {
-              handleEdit(item.name);
+              handleEdit(item.id);
             }}>
             <EditIcon source={require('../../assets/img/icons/edit.png')} />
           </Click>
@@ -64,5 +64,5 @@ const NaversCard: React.FC<NaverProps> = (item) => {
 export default NaversCard;
 
 /**
- * !Verificar a uri da imagem
+ * ! Verificar a uri da imagem
  */

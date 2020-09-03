@@ -47,7 +47,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       setToken(response.data.token);
       setLoginError(undefined);
 
-      api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+      api.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
 
       await AsyncStorage.setItem('@Navers:user', JSON.stringify(response.data));
       await AsyncStorage.setItem('@Navers:token', response.data.token);

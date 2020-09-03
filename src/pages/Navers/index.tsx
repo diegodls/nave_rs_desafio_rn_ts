@@ -37,7 +37,6 @@ const Navers: React.FC = () => {
         .get<NaverProps[]>('/navers')
         .then((response) => {
           if (response.status !== 200) {
-            console.log(response.data);
             throw new Error(String(response.status));
           } else {
             setNaversData(response.data);
@@ -59,45 +58,49 @@ const Navers: React.FC = () => {
 
   return (
     <Container>
-      {!loading ? (
+      {loading ? (
         <>
           {loadDataError ? (
             <TitleText>Erro</TitleText>
           ) : (
-            <InnerContainer>
-              <TitleContainer>
-                <TitleTextContainer title>
-                  <TitleText>Navers</TitleText>
-                  <TitleText>
-                    {naversData !== null ? naversData.length : '0'}
-                  </TitleText>
-                </TitleTextContainer>
-                <AddButton>
-                  <AddButtonContainer>
-                    <AddButtonText onPress={handleNavigation}>
-                      Adicionar naver
-                    </AddButtonText>
-                  </AddButtonContainer>
-                </AddButton>
-              </TitleContainer>
-              <List
-                data={naversData}
-                numColumns={2}
-                columnWrapperStyle={{ justifyContent: 'space-between' }}
-                showsVerticalScrollIndicator={false}
-                keyExtractor={(item) => String(item.id)}
-                renderItem={({ item }: { item: NaverProps }) => (
-                  <NaversCard {...item} />
-                )}
-              />
-            </InnerContainer>
+            <TitleText>Carregando</TitleText>
           )}
         </>
       ) : (
-        <TitleText>Carregando</TitleText>
+        <InnerContainer>
+          <TitleContainer>
+            <TitleTextContainer title>
+              <TitleText>Navers</TitleText>
+            </TitleTextContainer>
+            <AddButton>
+              <AddButtonContainer>
+                <AddButtonText onPress={handleNavigation}>
+                  Adicionar naver
+                </AddButtonText>
+              </AddButtonContainer>
+            </AddButton>
+          </TitleContainer>
+          <List
+            data={naversData}
+            numColumns={2}
+            columnWrapperStyle={{ justifyContent: 'space-between' }}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }: { item: NaverProps }) => (
+              <NaversCard {...item} />
+            )}
+          />
+        </InnerContainer>
       )}
     </Container>
   );
 };
 
 export default Navers;
+
+/**
+ * !TODO:
+ * ! Adicionar um componente 'carregando' padrão
+ * ! método de atualizar (flatlist refresh)
+ * ! isolar a lógica da view
+ */
