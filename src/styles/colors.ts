@@ -8,7 +8,7 @@ export default {
   placeholder: '#9E9E9E',
   dark_opacity: 'rgba(0,0,0,0.5)',
   test: '#DF00CC',
-  test1: '#FC0',
+  test1: '#FC0 ',
   test2: '#CDFF00',
   test3: '#0000FF',
 };

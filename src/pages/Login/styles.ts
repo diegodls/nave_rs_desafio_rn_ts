@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import { Platform } from 'react-native';
 import colors from '../../styles/colors';
 
 interface Props {

@@ -53,7 +53,7 @@ const Navers: React.FC = () => {
   }, []);
 
   function handleNavigation() {
-    navigation.navigate('AddOrEdit');
+    navigation.navigate('Add');
   }
 
   return (

@@ -4,7 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 //PAGES
 import Navers from '../pages/Navers';
 import Detail from '../pages/Detail';
-import AddOrEdit from '../pages/AddOrEdit';
+import Add from '../pages/Add';
+import Edit from '../pages/Edit';
 //COMPONENTS
 import Logo from '../components/Logo';
 import ToggleDrawer from '../components/ToggleDrawer';
@@ -33,7 +34,8 @@ const AppRoutes: React.FC = () => (
       })}
     />
     <AppStack.Screen name="Detail" component={Detail} />
-    <AppStack.Screen name="AddOrEdit" component={AddOrEdit} />
+    <AppStack.Screen name="Add" component={Add} />
+    <AppStack.Screen name="Edit" component={Edit} />
   </AppStack.Navigator>
 );
 

@@ -19,7 +19,7 @@ import {
 
 //INTERFACE
 import { NaverProps } from '../../Models/NaverProps';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
 //API
 import api from '../../services/api';
@@ -30,6 +30,7 @@ import api from '../../services/api';
 const Detail: React.FC = () => {
   //HOOKS
   const route = useRoute();
+  const navigation = useNavigation();
 
   //ROUTE_PARAMS
   //const routeParams = route.params as Params;
@@ -70,10 +71,12 @@ const Detail: React.FC = () => {
   //FUNCTIONS
   function showModal() {
     setModalVisible(!modalVisible);
-    console.log(modalVisible);
   }
-  function handleDelete() {
-    console.log(id);
+  async function handleDelete() {
+    await api.delete(`/navers/${id}`).then((response) => {
+      console.log(response.status);
+      navigation.goBack();
+    });
   }
 
   function handleEdit() {
@@ -180,7 +183,8 @@ export default Detail;
  * !TODO:
  * ! Adicionar um componente 'carregando' padrão
  * ! isolar a lógica da view
- * ! Tratar os dados de maneira correta
+ * ! Tratar os dados de maneira correta(datas)
  * ! Verificar uri da imagem
- * ! Transformar o Modal em um componente
+ * ! Transformar o Modal em um componente(e dividir a view em 3 para adicionar o fechar ao clicar fora)
+ * ! Criar o DataContext e colocar os Navers lá.
  */
