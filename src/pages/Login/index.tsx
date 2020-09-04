@@ -21,8 +21,8 @@ import { useAuthContext } from '../../contexts/auth';
 
 const Login: React.FC = () => {
   const { logIn, loginError } = useAuthContext();
-  const [email, setEmail] = useState<string>('user001@nave.rs');
-  const [password, setPassword] = useState<string>('user001');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
 
   //FUNCTIONS
