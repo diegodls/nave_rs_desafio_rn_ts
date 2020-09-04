@@ -11,8 +11,9 @@ Este aplicativo foi desenvolvido como um teste para a empresa Navers.rs para por
 
 
 # :iphone: Preview
-
-![https://github.com/diegodls/nave_rs_desafio_rn_ts/blob/assets/iOS.gif](https://github.com/diegodls/nave_rs_desafio_rn_ts/blob/assets/iOS.gif) 
+iOS            |  Android
+:-------------------------:|:-------------------------:
+![https://github.com/diegodls/nave_rs_desafio_rn_ts/blob/assets/iOS.gif](https://github.com/diegodls/nave_rs_desafio_rn_ts/blob/assets/iOS.gif)  | ![https://github.com/diegodls/nave_rs_desafio_rn_ts/blob/assets/Android.gif?raw=true](https://github.com/diegodls/nave_rs_desafio_rn_ts/blob/assets/Android.gif?raw=true)
 
 # :rocket: Iniciando
 Para executar este aplicativo. você deverá ter um [ambiente de trabalho configurado](https://www.google.com/) para o desenvolvimento em [React Native](https://reactnative.dev).</br>
@@ -20,8 +21,10 @@ Para testes foram utilizados o emulador do Mac Os Catalina e um dispositivo fís
 
 **Começando:**
 * Clone o repositório com o comando `git clone` ([veja mais](https://help.github.com/pt/github/creating-cloning-and-archiving-repositories/cloning-a-repository))
-* Abra um prompt de comando/cmd/terminal na pasta raiz ou navegue até ela, insira o comando `npx isntall` ou `npm install` ou `yarn install`, dependendo do gerenciador de pacotes que você usa, este comando serve para instalar os pacotes/módulos utilizado nesse projeto
+* Abra um prompt de comando/cmd/terminal na pasta raiz ou navegue até ela, insira o comando `npx isntall` ou `npm install` ou `yarn install`, dependendo do gerenciador de pacotes que você usa, este comando serve para instalar os pacotes/módulos utilizado nesse projeto.
 * Após a instalação dos pacotes/módulos, você pode executar no emulador/dispositivo com o comando `npx react-native run-android` (ou yarn ios, ou yarn android, dependendo da versão).
+* Caso apresente erros ao executar, recomendo o comando `npx pod-install` e `react-native link`.
+* Será necessário adicionar a URL da API no arquivo `src/services/api.ts`.
 
 # :nut_and_bolt: Módulos
 Neste projeto foram utilizado os seguintes módulos:</br>
